@@ -34,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     width: 100%; 
+    min-width: 450px; 
 }
 ol, ul {
 	list-style: none;
@@ -50,26 +51,176 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 h1, h2, h3{
     font-family: "Molle", cursive; 
 }
+h1{
+    font-size: 2.75rem;
+}
+h2{
+    font-size: 2rem; 
+    margin-bottom: 10px;
+}
+h3{
+    font-size: 3rem; 
+    width: 80%;
+    margin: 20px auto;
+}
+h4{
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 2rem; 
+    font-weight: bold;
+}
+p{
+    font-size: 16px; 
+    line-height: 24px;
+    margin-bottom: 15px;
+}
 h4, p, q, small, nav, button, form{
     font-family: "Montserrat", sans-serif;
 }
-
-nav{
-    background-color: #F6D64A;
-    position: absolute; 
-    top: 10px; 
-    right: 0; 
+/* #skip accessibility usage */ 
+#skip {
+position:absolute;
+left:-10000px;
+top:auto;
+width:1px;
+height:1px;
+overflow:hidden;
 }
+ 
+#skip:focus{
+position:static;
+width:auto;
+height:auto;
+}
+
+/* screen reader only class*/ 
+.sr-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+/* nav menu styling*/ 
+  #menu-toggle {
+    display: block;
+    background-color: #F6D64A;
+    z-index: 1;  
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 150px;
+    padding: 20px;
+    list-style-type: none;
+    transition: width 0.5s; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
+     -ms-user-select: none;
+         user-select: none;
+  }
+
+  #menu-toggle input {
+    display: block;
+    width: 100%;
+    height: 100%; 
+    position: absolute;
+    top: -7px;
+    right: -5px;  
+    padding: 0;
+    cursor: pointer;  
+    opacity: 0; 
+    z-index: 2; 
+    -webkit-touch-callout: none;
+  }
+  
+  #menu-toggle label {
+    position: relative;
+    text-transform: uppercase; 
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    z-index: 2; 
+  }
+ 
+  #menu-toggle ul {
+    position: absolute;
+    padding-top: 50px;
+    background-color: #222222;
+    list-style-type: none;
+    top: 0;
+    right: -150%;
+    -webkit-transition: right 0.3s ease;
+    -o-transition: right 0.3s ease;
+    transition: right 0.3s ease; 
+  }
+  #menu-toggle a{
+    text-decoration: none;
+    color: #222222;
+  }
+  #menu-toggle li  {
+    padding: 40px; 
+    background-color: #55BCD5;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 3px; 
+  }
+  #menu-toggle:has(input:checked) {
+    width: 100%; 
+    background-color: #222222; 
+    padding: 20px;
+    align-items: center;
+    z-index: 1000;
+  }
+  #toggle:checked ~ ul {
+    right: 0;
+    width: 100%; 
+  }
+
+  #toggle:checked ~ label{
+    color: #ffffff;
+  }
+
+ 
 header{
     background: linear-gradient(#55BCD5, #FFFFFF);
+    padding-bottom: 50px;
+}
+header h1, header p{
+    width: 50%;
+    margin-left: 50px;
+}
+header h1{
+    margin-top: 20px;
+}
+
+#intro h2, #intro p{
+    margin-left: 50px;
+    width: 80%;
 }
 #img-grid{
     display: grid;
+    justify-items: center;
     grid-gap: 1rem;
+    width:100%;
+    margin-bottom: 20px;
+}
+#img-grid img{
+    max-width:100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 #plan{
@@ -88,17 +239,11 @@ header{
     justify-items: center; 
     margin-bottom: 10px;
 }
-h3{
-    font-size: 3rem; 
-    width: 80%;
-    margin: 20px auto;
-}
+
 
 #plan h4, #about h4{
     margin-bottom: 10px; 
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform:uppercase;
+   
 }
 
 #testimonials section{
@@ -106,13 +251,16 @@ h3{
     margin: auto; 
     justify-items: center;
     text-align: center;
+    margin-bottom: 10px;
 
 }
 
 #testimonials h4{
-    text-transform: uppercase;
-    font-size: 2rem; 
-    font-weight: bold;
+    
+    margin-bottom: 0;
+}
+#testimonials p{
+    margin-bottom: 0;
 }
 #testimonials q{
     font-style: italic;
@@ -123,6 +271,7 @@ h3{
 }
 #about{
     background-color:#499BD2;
+    padding: 10px;
 }
 
 #about div{
@@ -130,7 +279,6 @@ h3{
     grid-template-columns: 1fr 1fr; 
     width: 80%;
     margin: auto;
-
 }
 #about section{
     padding: 10px;
@@ -140,35 +288,142 @@ h3{
 
 #about img{
     margin-bottom: 10px;
+    width: 75%;
+    height: auto;
 }
 
+#about p{
+    font-size: 1.25rem;
+}
 #contact span {
     font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
+
+/* form styling*/ 
 form{
     width: 80%;
     margin: auto;
 }
-#names, #nums, #selects{
+#names, #nums, #selects, .custom-select{
     display: grid; 
     padding: 10px;
 }
-form label{
+form label, #nums legend{
     text-transform: uppercase;
     font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.25rem;
 }
-form input, form select{
+/* cusstom radio button*/ 
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    color: #9B26B0;
+  width: 1.15em;
+  height: 1.15em;
+  font-size: 1.75em;
+  border: 3px solid #9B26B0;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+
+  }
+  input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #9B26B0;
+  }
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+  
+  #nums fieldset label {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    align-items: center;
+  }
+  .radio-label{
+    margin-left: 25px;
+    margin-bottom: 5px;
+    text-transform: none; 
+    font-weight: normal; 
+  }
+form input, .custom-select{
     padding: 20px; 
     border: 4px solid #9B26B0;
-    font-size: 1rem; 
-    width: 90%;
+    font-size: 1.25rem; 
+    margin-bottom: 5px;
 }
+/* custom select arrow */ 
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+  }
+  .custom-select {
+    display: grid;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+  }
+  select,
+  .custom-select:after {
+    grid-area: select;
+  }
+  .custom-select::after {
+    justify-self: end;
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    border-top: 3px solid #9B26B0; 
+    border-right: 3px solid #9B26B0; 
+    transform: rotate(135deg);
+
+  }
+  select:focus ~ .focus {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 3px solid #F6D64A;
+    border-radius: inherit;
+  }
+
+#destination::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: black;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
 form input[type="submit"] {
     margin-top: 10px;
     background-color: #9B26B0;
     color: #ffffff;
     text-transform: uppercase;
+    font-weight: bold; 
 }
 
 footer{
