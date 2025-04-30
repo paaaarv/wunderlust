@@ -515,7 +515,6 @@ footer a{
     margin: auto;
     grid-template-columns: repeat(2, 1fr); 
     grid-gap: 0.5rem; 
-    justify-items: space-around;
 
    }
    #plan section, #testimonials section{
